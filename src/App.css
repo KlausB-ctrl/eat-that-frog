@@ -1,5 +1,7 @@
 #root {
   height: 100vh;
+  max-width: 100vw;
+  overflow-y: hidden;
 }
 
 .App {
@@ -7,6 +9,15 @@
   height: 100%;
   width: 100%;
   text-align: center;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.2;
+  cursor: default;
 }
 
 header {
@@ -32,9 +43,14 @@ header img {
 }
 
 .description {
-  flex: 3;
+  flex: 4;
   text-align: start;
   margin: 0 0 0 2em;
+  font-size: 1em;
+}
+
+p.description {
+  width: 100%;
 }
 
 .information {
@@ -42,9 +58,11 @@ header img {
   margin: 0;
 }
 
-.todo {
+#todo {
   background-color: white;
   height: 85vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .date-dropdown {
@@ -64,19 +82,51 @@ header img {
   height: 5vh;
   display: flex;
   border: 2px solid #f5f5f5;
+  border-top: none;
+  color: #999;
+}
+
+.todo__record--edit {
+  background-color: #fff9a1;
+}
+
+#todo__record--new {
+  display: none;
+  background-color: #CCFFC8;
+}
+
+.todo__description__indicator {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 .todo__description {
   display: flex;
   align-items: center;
-  flex: 3;
-  margin: 0 0 0 2em;
+  flex: 4;
+  padding: 0 0 0 2em;
+  margin-left: 0;
   height: 100%;
+  min-width: 10%;
   border: 2px solid #f5f5f5;
   border-left: none;
 }
 
-.todo__date, .todo__status, .todo__priority {
+.todo__description p {
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.todo__description input {
+  border: none;
+  line-height: 1.6em;
+  margin-right: 2em;
+  width: 100%;
+}
+
+.todo__date, .todo__status, .todo__priority, .todo__actions {
   display: flex;
   flex: 1;
   height: 100%;
@@ -85,6 +135,7 @@ header img {
 
 .todo__date p {
   border: 1px solid #999;
+  background-color: white;
   border-radius: 5px;
   width: 55px;
   margin: auto;
@@ -93,7 +144,11 @@ header img {
 
 .todo__date--past p {
   color: red;
-  border: 1px solid red;
+  border: 1px solid red; 
+}
+
+#todo__record--new .todo__date p{
+  background-color: #f1f1f1;
 }
 
 .todo__status p, .todo__priority p {
@@ -103,24 +158,58 @@ header img {
   color: white;
 }
 
-.todo__status--done p, .todo__priority--low p {
+.todo__status--done p, .todo__priority--low p, .todo__status__indicator--done {
   background-color: #3AC358;
 }
 
-.todo__status--in-progress p, .todo__priority--medium p {
+.todo__status--in-progress p, .todo__priority--medium p, .todo__status__indicator--in-progress {
   background-color: #FFE600;
 }
 
-.todo__status--postponed p {
+.todo__status--postponed p, .todo__status__indicator--postponed {
   background-color: #999999;
 }
 
-.todo__status--new p {
+.todo__status--new p, .todo__status__indicator--new {
   background-color: #00E5F3;
+}
+
+.todo__priority--high p {
+  background-color: #FF8A00;
+}
+
+.todo__priority--critical p {
+  background-color: red;
+}
+
+.todo__record select {
+  height: 60%;
+  margin: auto;
+  border: 1px solid #999;
+  color: #999;
+}
+
+.todo__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.todo__actions button {
+  height: 2em;
+  width: 2em;
+  font-size: 1.6em;
+  background: none;
+  border: none;
+  color: #999;
 }
 
 footer {
   background-color: #f5f5f5;
+  position: fixed;
+  right: 0;
+  width: 100vw;
   height: 5vh;
   display: flex;
   justify-content: flex-end;
@@ -128,12 +217,126 @@ footer {
   padding: 0 70px;
 }
 
+#cancel-add-task {
+  background: none;
+  border: none;
+  color: red;
+  margin-right: 50px;
+  display: none;
+}
+
 #add-task {
   background-color: #3AC358;
   border-radius: 20px;
   border: #3AC358;
   color: white;
-  padding: 1em 5em;
+  font-size: 1.6em;
   height: 80%;
+  width: 200px;
 }
 
+@media only screen and (max-height: 1150px) {
+  .todo__record {
+    height: 8.5vh;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  .todo__description {
+    font-size: small;
+  }
+
+  .todo__status p, .todo__priority p {
+    width: 90px;
+  }
+
+  .todo__date p {
+    border: none;
+    margin: auto;
+    padding: 1px 5px;
+  }
+
+  .todo__actions {
+    gap: 2px;
+  }
+}
+
+@media only screen and (max-width: 880px) {
+  header {
+    align-items: center;
+  }
+
+  .headings {
+    display: none;
+  }
+
+  .date-dropdown {
+    font-size: 2em;
+    height: 17%;
+  }
+
+  .todo__record, #todo__record--new {
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    height: 33%;
+  }
+
+  .todo__description__indicator {
+    display: none;
+  }
+
+  .todo__description {
+    justify-content: center;
+    grid-column: 1 / 3;
+    grid-row: 1 / 4;
+    border: none;
+    font-size: 1em;
+  }
+
+  .todo__date {
+    display: none;
+  }
+
+  .todo__status, .todo__priority {
+    border: none;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+  }
+
+  .todo__status p, .todo__priority p {
+    width: 80%;
+    font-size: 2em;
+    line-height: normal;
+  }
+
+  .todo__actions {
+    font-size: 2em;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    grid-column: 1 / 3;
+    grid-row: 5 / 6;
+    border: none;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .todo__description {
+    font-size: 0.9em;
+  }
+
+  .todo__status p, .todo__priority p {
+    font-size: 1em;
+  }
+
+  .todo__actions {
+    font-size: 1em;
+    height: 50%;
+  }
+
+  .todo__actions button {
+    height: fit-content;
+  }
+}
