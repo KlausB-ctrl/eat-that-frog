@@ -1,5 +1,5 @@
 #root {
-  height: 100vh;
+  height: 100%;
   max-width: 100vw;
   overflow-y: hidden;
 }
@@ -275,6 +275,10 @@ footer {
     height: 17%;
   }
 
+  #todo {
+    height: 70vh;
+  }
+
   .todo__record, #todo__record--new {
     display: grid;
     grid-template-columns: 1fr 1fr ;
@@ -319,6 +323,18 @@ footer {
     grid-column: 1 / 3;
     grid-row: 5 / 6;
     border: none;
+  }
+
+  footer {
+    margin: auto;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+    height: 22%;
+  }
+
+  #add-task {
+    height: 20%;
   }
 }
 
