@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/eat-that-frog/static/css/main.55b634a4.css",
+    "main.css": "/eat-that-frog/static/css/main.3e0354d6.css",
     "main.js": "/eat-that-frog/static/js/main.bdb25bfc.js",
     "static/js/787.c879b41f.chunk.js": "/eat-that-frog/static/js/787.c879b41f.chunk.js",
     "static/media/eat-that-frog.png": "/eat-that-frog/static/media/eat-that-frog.ad5cf6d0945d3ba0689f.png",
     "index.html": "/eat-that-frog/index.html",
-    "main.55b634a4.css.map": "/eat-that-frog/static/css/main.55b634a4.css.map",
+    "main.3e0354d6.css.map": "/eat-that-frog/static/css/main.3e0354d6.css.map",
     "main.bdb25bfc.js.map": "/eat-that-frog/static/js/main.bdb25bfc.js.map",
     "787.c879b41f.chunk.js.map": "/eat-that-frog/static/js/787.c879b41f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.55b634a4.css",
+    "static/css/main.3e0354d6.css",
     "static/js/main.bdb25bfc.js"
   ]
 }
